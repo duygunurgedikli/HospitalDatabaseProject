@@ -1,0 +1,40 @@
+﻿@using DataAccessLayer.EntityFramework
+@model List<DoctorView>
+@{
+    ViewData["Title"] = "GetDoctorDetails";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>GetDoctorDetails</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>DoctorID</th>
+            <th>DoctorName</th>
+            <th>DoctorSurname</th>
+            <th>DoctorImage</th>
+            <th>DoctorContact</th>
+            <th>DoctorStatus</th>
+            <th>DoctorBranch</th>
+            <!-- Diğer sütunlar... -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <td>@doctor.DoctorID</td>
+                <td>@doctor.DoctorName</td>
+                <td>@doctor.DoctorSurname</td>
+                <td>@doctor.DoctorImage</td>
+                <td>@doctor.DoctorContact</td>
+                <td>@doctor.DoctorStatus</td>
+                <td>@doctor.DoctorBranch</td>
+              
+            </tr>
+        }
+    </tbody>
+</table>

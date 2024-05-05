@@ -1,0 +1,71 @@
+﻿@using EntityLayer.Concrete
+@model List<Doctor>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int count = 0;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<style>
+    img {
+        border-radius: 50%;
+    }
+</style>
+
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+    var doctorName = TempData["DoctorName"] as string;
+}
+
+@if (!string.IsNullOrEmpty(successMessage) && !string.IsNullOrEmpty(doctorName))
+{
+    <div class="alert alert-success">
+        @successMessage
+        <p>Eklenen Doktor: @doctorName</p>
+    </div>
+}
+
+<h1>Doktor Listesi</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Görsel</th>
+        <th>Ad Soyad</th>
+        <th>Branş</th>
+        <th>İletisim</th>
+        <th>Durum</th>
+        <th>Sil</th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td><img src="@item.Image" height="50" width="50" /></td>
+            <td>@item.Name  @item.Surname</td>
+            <td>@item.Branch</td>
+            <td>@item.Concact</td>
+
+            @{
+                if (item.Status == true)
+                {
+                    <td>Aktif</td>
+                }
+                else
+                {
+                    <td>Pasif</td>
+                }
+            }
+            <td><a href="/Doctor/DeleteDoctor/@item.DoctorID" class="btn btn-outline-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/Doctor/AddDoctor/" class="btn btn-outline-primary">Yeni Doktor Girişi</a>
+
+
+

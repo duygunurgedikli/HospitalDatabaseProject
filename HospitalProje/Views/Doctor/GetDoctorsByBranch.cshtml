@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model List<Doctor>
+@{
+    ViewData["Title"] = "GetDoctorsByBranch";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Doctor Filtreleme</h1>
+
+<form method="get" action="/Doctor/GetDoctorsByBranch/" class="form-inline">
+    <div class="form-group">
+        <input type="text" id="branch" name="branch" class="form-control mr-2" required />
+        <button type="submit" class="btn btn-outline-primary">Get Doctors</button>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Ad Soyad</th>
+        <th>Branş</th>
+        <th>İletişim</th>
+        <th>Durum</th>
+    </tr>
+    @foreach (var doctor in Model)
+    {
+        <tr>
+            <td>@doctor.DoctorID</td>
+            <td>@($"{doctor.Name} {doctor.Surname}")</td>
+            <td>@doctor.Branch</td>
+            <td>@doctor.Concact</td>
+            <td>@(doctor.Status ? "Aktif" : "Pasif")</td>
+        </tr>
+    }
+</table>

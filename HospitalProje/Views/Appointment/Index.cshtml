@@ -1,0 +1,34 @@
+﻿@using EntityLayer.Concrete
+@model List<Appointment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int count = 0; 
+}
+
+<h1>Randevular</h1>
+<table class="table table-bordered">
+    <tr>
+   
+        <th>Randevu No</th>
+        <th>Doktor</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        count++;
+        <tr>
+          
+            <td>@item.AppointmentID</td>
+            <td>@item.DoctorId</td>
+            <td>@item.Date</td>
+            <td><a href="/Appointment/DeleteAppointment/@item.AppointmentID" class="btn btn-outline-danger">Sil</a></td>
+            <td><a href="/Appointment/UpdateAppointment/@item.AppointmentID" class="btn btn-outline-success">Güncelle</a></td>
+            
+        </tr>
+    }
+</table>
+<a href="/Appointment/AddAppointment/" class="btn btn-outline-primary">Yeni Randevu Girişi</a>
+

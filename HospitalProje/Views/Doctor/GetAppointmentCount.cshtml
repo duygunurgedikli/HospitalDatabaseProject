@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "GetAppointmentCount";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Aktif-Pasif Doktor Listesi</h1>
+
+
+<form method="get" action="/Doctor/GetAppointmentCount/" class="form-inline">
+    <div class="form-group">
+        <input type="text" id="branch" name="branch" class="form-control mr-2" required />
+        <button type="submit" class="btn btn-outline-primary">Get Doctors</button>
+    </div>
+</form>
